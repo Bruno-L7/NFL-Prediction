@@ -111,7 +111,7 @@ def train_ensemble_win_prob_model(X_train, y_train, X_val, y_val):
     """Train an ensemble of models for win probability"""
     models = {
         'logistic': LogisticRegression(max_iter=1000, random_state=42),
-        'random_forest': RandomForestClassifier(n_estimators=100, random_state=42),
+        'random_forest': RandomForestClassifier(n_estimators=50, random_state=42),
         'xgboost': xgb.XGBClassifier(
             objective='binary:logistic',
             eval_metric='logloss',
@@ -123,7 +123,7 @@ def train_ensemble_win_prob_model(X_train, y_train, X_val, y_val):
             min_child_weight=1,
             reg_lambda=1,
             reg_alpha=0,
-            n_estimators=1000,
+            n_estimators=100,
             random_state=42
         )
     }
@@ -424,7 +424,7 @@ def create_player_rnn_model(input_shape, num_players, embedding_dim=15, rnn_unit
     sequence_input = Input(shape=input_shape, name='sequence_input')
     
     # Process sequence with multiple layers
-    x = LSTM(64, return_sequences=True)(sequence_input)
+    x = LSTM(32, return_sequences=True)(sequence_input)
     x = Dropout(0.3)(x)
     x = LSTM(32, return_sequences=False)(x)
     x = Dropout(0.3)(x)
@@ -1017,7 +1017,7 @@ def train_enhanced_win_prob_model(pbp_df, use_neural=False, use_stacking=True, c
             # Define base models
             base_models = {
                 'logistic': LogisticRegression(max_iter=1000, random_state=42),
-                'random_forest': RandomForestClassifier(n_estimators=100, random_state=42),
+                'random_forest': RandomForestClassifier(n_estimators=50, random_state=42),
                 'xgboost': xgb.XGBClassifier(
                     objective='binary:logistic',
                     eval_metric='logloss',
@@ -1029,7 +1029,7 @@ def train_enhanced_win_prob_model(pbp_df, use_neural=False, use_stacking=True, c
                     min_child_weight=1,
                     reg_lambda=1,
                     reg_alpha=0,
-                    n_estimators=1000,
+                    n_estimators=100,
                     random_state=42
                 )
             }
@@ -1084,7 +1084,7 @@ def train_enhanced_win_prob_model(pbp_df, use_neural=False, use_stacking=True, c
                 min_child_weight=1,
                 reg_lambda=1,
                 reg_alpha=0,
-                n_estimators=1000,
+                n_estimators=100,
                 random_state=42,
                 early_stopping_rounds=50
             )
@@ -1222,7 +1222,7 @@ def train_spread_model_huber(pbp_df):
         subsample=0.8,
         colsample_bytree=0.8,
         reg_lambda=1,
-        n_estimators=1000,
+        n_estimators=100,
         random_state=42,
         early_stopping_rounds=50  # <-- MOVED HERE
     )
@@ -1325,7 +1325,7 @@ def train_enhanced_points_model(pbp_df):
         subsample=0.8,
         colsample_bytree=0.8,
         reg_lambda=1.5,
-        n_estimators=1000,
+        n_estimators=100,
         random_state=42,
         early_stopping_rounds=50  # <-- MOVED HERE
     )
