@@ -37,7 +37,7 @@ warnings.filterwarnings('ignore', category=FutureWarning)
 warnings.filterwarnings('ignore', category=UserWarning)
 
 # --- CONFIGURATION ---
-HISTORICAL_YEARS = range(2018, 2025)
+HISTORICAL_YEARS = range(2023, 2025)
 CURRENT_SEASON = 2024
 ROLLING_WINDOW = 5
 EWMA_ALPHA = 0.3
