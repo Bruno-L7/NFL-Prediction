@@ -52,7 +52,7 @@ def train_all_models(_pbp_df, _weekly_df):
     # 1. Win Probability Model
     try:
         model, scaler, stats, loss = train_enhanced_win_prob_model(
-            _pbp_df, use_neural=False, use_stacking=True, calibrate=True
+            _pbp_df, use_neural=False, use_stacking=False, calibrate=True
         )
         if model:
             models_dict['binary'] = (model, scaler, stats, loss)
